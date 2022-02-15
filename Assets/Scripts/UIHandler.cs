@@ -42,6 +42,7 @@ public class UIHandler : MonoBehaviour
         inGameMenu.gameObject.SetActive(false);
         pauseMenu.gameObject.SetActive(false);
         gameOverMenu.gameObject.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void RestartGame()
