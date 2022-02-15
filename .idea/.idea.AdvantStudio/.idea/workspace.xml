@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b328d8b-fe57-46f4-8f3d-f34eeee1f880" name="Default Changelist" comment="" />
+    <list default="true" id="7b328d8b-fe57-46f4-8f3d-f34eeee1f880" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Platform.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Platform.prefab" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -101,9 +103,14 @@
     <MESSAGE value="Added Platform" />
     <MESSAGE value="Added PlayerMovementController" />
     <MESSAGE value="Changed Platform and PlayerMovementController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed Platform and PlayerMovementController" />
+    <MESSAGE value="Added Spawner" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Spawner" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="872" y="438" key="Vcs.Push.Dialog.v2" timestamp="1644940891130">
+      <screen x="0" y="0" width="2560" height="1410" />
+    </state>
+    <state x="872" y="438" key="Vcs.Push.Dialog.v2/0.0.2560.1410@0.0.2560.1410" timestamp="1644940891130" />
     <state x="943" y="317" width="672" height="678" key="search.everywhere.popup" timestamp="1644916247956">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
