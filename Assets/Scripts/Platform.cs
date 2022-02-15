@@ -8,4 +8,9 @@ public class Platform : MonoBehaviour
     {
         transform.position += Vector3.left * (speed * Time.deltaTime);
     }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }

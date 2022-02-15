@@ -437,6 +437,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e3b8d0983e2ba4caac672b5927fc2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 8581585868842669547, guid: 7752b6bb15a2c124eafb8d44dba3b1b5, type: 3}
+  minY: 4
+  maxY: -4
+  spawnDelay: 1.5
 --- !u!114 &314684338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2166,7 +2170,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.6233406, y: -0.24280953}
+  m_Offset: {x: 0.6233406, y: -0.49750113}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2177,7 +2181,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.341431, y: 1.4856191}
+  m_Size: {x: 9.341431, y: 0.97623587}
   m_EdgeRadius: 0
 --- !u!1 &1139430379
 GameObject:
@@ -2271,8 +2275,12 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8581585868842669549, guid: 7752b6bb15a2c124eafb8d44dba3b1b5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6.803952
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581585868842669549, guid: 7752b6bb15a2c124eafb8d44dba3b1b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.9082
       objectReference: {fileID: 0}
     - target: {fileID: 8581585868842669549, guid: 7752b6bb15a2c124eafb8d44dba3b1b5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2578,7 +2586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minPositionY: -3
   maxPositionY: 3
-  lerpDuration: 4
+  lerpDuration: 6
 --- !u!58 &1738822835
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2647,7 +2655,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.6233406, y: -0.24280953}
+  m_Offset: {x: 0.6233406, y: 0.011882067}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2658,7 +2666,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.341431, y: 1.4856191}
+  m_Size: {x: 9.341431, y: 0.97623587}
   m_EdgeRadius: 0
 --- !u!4 &1751740879
 Transform:
@@ -2836,8 +2844,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8581585868842669549, guid: 7752b6bb15a2c124eafb8d44dba3b1b5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6.9815207
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581585868842669549, guid: 7752b6bb15a2c124eafb8d44dba3b1b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.9968
       objectReference: {fileID: 0}
     - target: {fileID: 8581585868842669549, guid: 7752b6bb15a2c124eafb8d44dba3b1b5, type: 3}
       propertyPath: m_LocalPosition.y

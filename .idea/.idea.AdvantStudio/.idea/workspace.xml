@@ -20,12 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b328d8b-fe57-46f4-8f3d-f34eeee1f880" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AdvantStudio/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AdvantStudio/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AdvantStudio/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AdvantStudio/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Platform.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Platform.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Platform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Platform.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovementController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMovementController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,12 +34,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/Home/Documents/AdvantStudio/Assets/Scenes/SampleScene.unity" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Home/Documents/AdvantStudio/Assets/Prefabs/Platform.prefab" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Home/Documents/AdvantStudio/Assets/Prefabs/Platform.prefab" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Home/Documents/AdvantStudio/Assets/Scripts/Platform.cs" root0="SKIP_HIGHLIGHTING" />
-  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -49,8 +42,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/ScoreHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DeadZone.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UIHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovementController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Platform.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Spawner.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovementController.cs" />
       </list>
     </option>
   </component>
@@ -96,6 +90,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
@@ -103,7 +98,10 @@
     <MESSAGE value="Added UI" />
     <MESSAGE value="Added DeadZone" />
     <MESSAGE value="Added ScoreHandler" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added ScoreHandler" />
+    <MESSAGE value="Fixed UIHandler" />
+    <MESSAGE value="Added Platform" />
+    <MESSAGE value="Added PlayerMovementController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added PlayerMovementController" />
   </component>
   <component name="WindowStateProjectService">
     <state x="943" y="317" width="672" height="678" key="search.everywhere.popup" timestamp="1644916247956">
