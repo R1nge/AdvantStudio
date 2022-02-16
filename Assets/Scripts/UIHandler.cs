@@ -13,6 +13,7 @@ public class UIHandler : MonoBehaviour
         _scoreHandler = FindObjectOfType<ScoreHandler>();
         _scoreHandler.OnScoreChangedEvent += UpdateScore;
         Time.timeScale = 0;
+        ShowMainMenu();
     }
 
     public void Play()
@@ -54,5 +55,14 @@ public class UIHandler : MonoBehaviour
     {
         scoreText.text = score.ToString();
         highScoreText.text = "HighScore: " + highScore;
+    }
+
+    private void ShowMainMenu()
+    {
+        mainMenu.gameObject.SetActive(true);
+        inGameMenu.gameObject.SetActive(false);
+        pauseMenu.gameObject.SetActive(false);
+        gameOverMenu.gameObject.SetActive(false);
+        Time.timeScale = 0;
     }
 }
