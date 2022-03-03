@@ -5,17 +5,15 @@ using UnityEngine;
 public class ScoreHandler : MonoBehaviour
 {
     private int _score, _highScore;
-    public Action<int,int> OnScoreChangedEvent;
+    public event Action<int, int> OnScoreChangedEvent;
 
     private void Awake()
     {
         Load();
+        IncreaseScore(0);
     }
 
-    private void Start()
-    {
-        StartCoroutine(IncreaseScore_c());
-    }
+    private void Start() => StartCoroutine(IncreaseScore_c());
 
     private IEnumerator IncreaseScore_c()
     {
@@ -30,7 +28,7 @@ public class ScoreHandler : MonoBehaviour
     {
         _score += amount;
         SetHighScore();
-        OnScoreChangedEvent?.Invoke(_score,_highScore);
+        OnScoreChangedEvent?.Invoke(_score, _highScore);
     }
 
     private void SetHighScore()
@@ -40,10 +38,7 @@ public class ScoreHandler : MonoBehaviour
         Save();
     }
 
-    private void Load()
-    {
-        _highScore = PlayerPrefs.GetInt("HighScore", 0);
-    }
+    private void Load() => _highScore = PlayerPrefs.GetInt("HighScore", 0);
 
     private void Save()
     {

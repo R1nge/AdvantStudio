@@ -9,15 +9,9 @@ public class PlayerMovementController : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private bool _isGrounded;
 
-    private void Awake()
-    {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-    }
+    private void Awake() => _rigidbody2D = GetComponent<Rigidbody2D>();
 
-    private void Start()
-    {
-        _moveDirection = Vector2.down;
-    }
+    private void Start() => _moveDirection = Vector2.down;
 
     private void Update()
     {
@@ -33,10 +27,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
-    {
-        Move(_moveDirection, lerpDuration);
-    }
+    private void FixedUpdate() => Move(_moveDirection, lerpDuration);
 
     private void ChangeDirection()
     {
@@ -55,10 +46,8 @@ public class PlayerMovementController : MonoBehaviour
         _isGrounded = false;
     }
 
-    private void Move(Vector2 direction, float lerp)
-    {
+    private void Move(Vector2 direction, float lerp) =>
         _rigidbody2D.MovePosition(_rigidbody2D.position + direction / lerp);
-    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
