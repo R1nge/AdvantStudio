@@ -5,17 +5,15 @@ public class UIHandler : MonoBehaviour
 {
     [SerializeField] private Canvas mainMenu, inGameMenu, pauseMenu, gameOverMenu;
     [SerializeField] private TextMeshProUGUI scoreText, highScoreText;
-    private ScoreHandler _scoreHandler;
-    private GameManager _gameManager;
+    [SerializeField] private ScoreHandler scoreHandler;
+    [SerializeField] private GameManager gameManager;
 
     private void Awake()
     {
-        _scoreHandler = FindObjectOfType<ScoreHandler>();
-        _scoreHandler.OnScoreChangedEvent += UpdateScore;
-        _gameManager = FindObjectOfType<GameManager>();
-        _gameManager.OnStartGameEvent += OnStartGame;
-        _gameManager.OnGameOverEvent += ShowGameOverScreen;
-        _gameManager.SetTimeScale(0);
+        scoreHandler.OnScoreChangedEvent += UpdateScore;
+        gameManager.OnStartGameEvent += OnStartGame;
+        gameManager.OnGameOverEvent += ShowGameOverScreen;
+        gameManager.SetTimeScale(0);
     }
 
     private void Start() => ShowMainMenu();
@@ -26,19 +24,19 @@ public class UIHandler : MonoBehaviour
         inGameMenu.gameObject.SetActive(true);
         pauseMenu.gameObject.SetActive(false);
         gameOverMenu.gameObject.SetActive(false);
-        _gameManager.SetTimeScale(1);
+        gameManager.SetTimeScale(1);
     }
 
     public void ShowPauseMenu()
     {
+        gameManager.SetTimeScale(0);
         pauseMenu.gameObject.SetActive(true);
-        _gameManager.SetTimeScale(0);
     }
 
     public void HidePauseMenu()
     {
         pauseMenu.gameObject.SetActive(false);
-        _gameManager.SetTimeScale(1);
+        gameManager.SetTimeScale(1);
     }
 
     private void ShowGameOverScreen()
@@ -47,13 +45,13 @@ public class UIHandler : MonoBehaviour
         inGameMenu.gameObject.SetActive(false);
         pauseMenu.gameObject.SetActive(false);
         gameOverMenu.gameObject.SetActive(true);
-        _gameManager.SetTimeScale(0);
+        gameManager.SetTimeScale(0);
     }
 
     private void UpdateScore(int score, int highScore)
     {
-        scoreText.text = score.ToString();
-        highScoreText.text = "HighScore: " + highScore;
+        scoreText.SetText(score.ToString());
+        highScoreText.SetText("HighScore: " + highScore);
     }
 
     private void ShowMainMenu()
@@ -62,13 +60,13 @@ public class UIHandler : MonoBehaviour
         inGameMenu.gameObject.SetActive(false);
         pauseMenu.gameObject.SetActive(false);
         gameOverMenu.gameObject.SetActive(false);
-        _gameManager.SetTimeScale(0);
+        gameManager.SetTimeScale(0);
     }
 
     private void OnDestroy()
     {
-        _scoreHandler.OnScoreChangedEvent -= UpdateScore;
-        _gameManager.OnStartGameEvent -= OnStartGame;
-        _gameManager.OnGameOverEvent -= ShowGameOverScreen;
+        scoreHandler.OnScoreChangedEvent -= UpdateScore;
+        gameManager.OnStartGameEvent -= OnStartGame;
+        gameManager.OnGameOverEvent -= ShowGameOverScreen;
     }
 }

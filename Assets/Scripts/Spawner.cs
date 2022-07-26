@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject objectToSpawn;
+    [SerializeField] private GameObject prefab;
     [SerializeField] private int minY, maxY;
     [SerializeField] private float spawnDelay;
-    private int[] _positionForRandom;
+    private int[] _positions;
     private int _index;
+    private bool _isFirstGame = true;
 
     private void Start()
     {
-        _positionForRandom = new[] {minY, maxY};
+        _positions = new[] {minY, maxY};
         StartCoroutine(Spawn_c());
     }
 
@@ -26,15 +27,21 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        objectToSpawn.transform.localScale = new Vector3(Random.Range(3f, 5), 1, 1);
-        Instantiate(objectToSpawn, new Vector3(Random.Range(5f, 7f), GetPositionY(), 0), Quaternion.identity);
+        prefab.transform.localScale = new Vector3(Random.Range(3f, 5), 1, 1);
+        Instantiate(prefab, new Vector3(Random.Range(5f, 7f), GetPositionY(), 0), Quaternion.identity);
     }
 
-    private float GetPositionY()
+    private int GetPositionY()
     {
+        if (_isFirstGame)
+        {
+            _isFirstGame = false;
+            return _positions[0];
+        }
+
         _index = _index == 0 ? 1 : 0;
 
-        var chosenValue = _positionForRandom[_index];
+        var chosenValue = _positions[_index];
         return chosenValue;
     }
 }

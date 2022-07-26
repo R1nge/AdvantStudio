@@ -7,11 +7,7 @@ public class ScoreHandler : MonoBehaviour
     private int _score, _highScore;
     public event Action<int, int> OnScoreChangedEvent;
 
-    private void Awake()
-    {
-        Load();
-        IncreaseScore(0);
-    }
+    private void Awake() => Load();
 
     private void Start() => StartCoroutine(IncreaseScore_c());
 
@@ -38,7 +34,11 @@ public class ScoreHandler : MonoBehaviour
         Save();
     }
 
-    private void Load() => _highScore = PlayerPrefs.GetInt("HighScore", 0);
+    private void Load()
+    {
+        _highScore = PlayerPrefs.GetInt("HighScore", 0);
+        OnScoreChangedEvent?.Invoke(_score, _highScore);
+    }
 
     private void Save()
     {
