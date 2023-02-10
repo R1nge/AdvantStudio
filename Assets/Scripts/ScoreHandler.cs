@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ScoreHandler : MonoBehaviour
 {
+    [SerializeField] private float increaseInterval;
+    [SerializeField] private int increaseAmount;
     private int _score, _highScore;
     public event Action<int, int> OnScoreChangedEvent;
 
@@ -15,8 +17,8 @@ public class ScoreHandler : MonoBehaviour
     {
         while (enabled)
         {
-            yield return new WaitForSeconds(2);
-            IncreaseScore(10);
+            yield return new WaitForSeconds(increaseInterval);
+            IncreaseScore(increaseAmount);
         }
     }
 

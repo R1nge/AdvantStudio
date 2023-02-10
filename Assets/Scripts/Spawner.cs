@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        prefab.transform.localScale = new Vector3(Random.Range(3f, 5), 1, 1);
+        prefab.transform.localScale = new Vector3(Random.Range(4f, 5f), 1, 1);
         Instantiate(prefab, new Vector3(Random.Range(5f, 7f), GetPositionY(), 0), Quaternion.identity);
     }
 

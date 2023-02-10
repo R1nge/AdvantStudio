@@ -5,15 +5,18 @@ public class UIHandler : MonoBehaviour
 {
     [SerializeField] private Canvas mainMenu, inGameMenu, pauseMenu, gameOverMenu;
     [SerializeField] private TextMeshProUGUI scoreText, highScoreText;
-    [SerializeField] private ScoreHandler scoreHandler;
-    [SerializeField] private GameManager gameManager;
+    private ScoreHandler _scoreHandler;
+    private GameManager _gameManager;
 
     private void Awake()
     {
-        scoreHandler.OnScoreChangedEvent += UpdateScore;
-        gameManager.OnStartGameEvent += OnStartGame;
-        gameManager.OnGameOverEvent += ShowGameOverScreen;
-        gameManager.SetTimeScale(0);
+        _scoreHandler = FindObjectOfType<ScoreHandler>();
+        _gameManager = FindObjectOfType<GameManager>();
+
+        _scoreHandler.OnScoreChangedEvent += UpdateScore;
+        _gameManager.OnStartGameEvent += OnStartGame;
+        _gameManager.OnGameOverEvent += ShowGameOverScreen;
+        _gameManager.SetTimeScale(0);
     }
 
     private void Start() => ShowMainMenu();
@@ -24,19 +27,19 @@ public class UIHandler : MonoBehaviour
         inGameMenu.gameObject.SetActive(true);
         pauseMenu.gameObject.SetActive(false);
         gameOverMenu.gameObject.SetActive(false);
-        gameManager.SetTimeScale(1);
+        _gameManager.SetTimeScale(1);
     }
 
     public void ShowPauseMenu()
     {
-        gameManager.SetTimeScale(0);
+        _gameManager.SetTimeScale(0);
         pauseMenu.gameObject.SetActive(true);
     }
 
     public void HidePauseMenu()
     {
         pauseMenu.gameObject.SetActive(false);
-        gameManager.SetTimeScale(1);
+        _gameManager.SetTimeScale(1);
     }
 
     private void ShowGameOverScreen()
@@ -45,7 +48,7 @@ public class UIHandler : MonoBehaviour
         inGameMenu.gameObject.SetActive(false);
         pauseMenu.gameObject.SetActive(false);
         gameOverMenu.gameObject.SetActive(true);
-        gameManager.SetTimeScale(0);
+        _gameManager.SetTimeScale(0);
     }
 
     private void UpdateScore(int score, int highScore)
@@ -60,13 +63,13 @@ public class UIHandler : MonoBehaviour
         inGameMenu.gameObject.SetActive(false);
         pauseMenu.gameObject.SetActive(false);
         gameOverMenu.gameObject.SetActive(false);
-        gameManager.SetTimeScale(0);
+        _gameManager.SetTimeScale(0);
     }
 
     private void OnDestroy()
     {
-        scoreHandler.OnScoreChangedEvent -= UpdateScore;
-        gameManager.OnStartGameEvent -= OnStartGame;
-        gameManager.OnGameOverEvent -= ShowGameOverScreen;
+        _scoreHandler.OnScoreChangedEvent -= UpdateScore;
+        _gameManager.OnStartGameEvent -= OnStartGame;
+        _gameManager.OnGameOverEvent -= ShowGameOverScreen;
     }
 }
