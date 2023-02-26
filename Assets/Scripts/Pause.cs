@@ -5,9 +5,9 @@ public class Pause : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private PlayerMovementController movementController;
 
-    public void OnPointerEnter(PointerEventData eventData) => movementController.canMove = false;
+    public void OnPointerEnter(PointerEventData eventData) => movementController.SetCanMove(false);
 
-    public void OnPointerExit(PointerEventData eventData) => movementController.canMove = true;
+    public void OnPointerExit(PointerEventData eventData) => movementController.SetCanMove(true);
 
-    private void OnDisable() => movementController.canMove = true;
+    private void OnDisable() => movementController.SetCanMove(true);
 }

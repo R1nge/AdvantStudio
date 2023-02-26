@@ -10,13 +10,14 @@ public class UIHandler : MonoBehaviour
 
     private void Awake()
     {
-        _scoreHandler = FindObjectOfType<ScoreHandler>();
         _gameManager = FindObjectOfType<GameManager>();
-
-        _scoreHandler.OnScoreChangedEvent += UpdateScore;
         _gameManager.OnStartGameEvent += OnStartGame;
         _gameManager.OnGameOverEvent += ShowGameOverScreen;
         _gameManager.SetTimeScale(0);
+        
+        _scoreHandler = FindObjectOfType<ScoreHandler>();
+        _scoreHandler.OnScoreChangedEvent += UpdateScore;
+        _scoreHandler.OnHighScoreChangedEvent += UpdateHighScore;
     }
 
     private void Start() => ShowMainMenu();
@@ -51,11 +52,9 @@ public class UIHandler : MonoBehaviour
         _gameManager.SetTimeScale(0);
     }
 
-    private void UpdateScore(int score, int highScore)
-    {
-        scoreText.SetText(score.ToString());
-        highScoreText.SetText("HighScore: " + highScore);
-    }
+    private void UpdateScore(int score) => scoreText.SetText(score.ToString());
+
+    private void UpdateHighScore(int highScore) => highScoreText.SetText($"HighScore: {highScore}");
 
     private void ShowMainMenu()
     {
@@ -69,6 +68,7 @@ public class UIHandler : MonoBehaviour
     private void OnDestroy()
     {
         _scoreHandler.OnScoreChangedEvent -= UpdateScore;
+        _scoreHandler.OnHighScoreChangedEvent -= UpdateHighScore;
         _gameManager.OnStartGameEvent -= OnStartGame;
         _gameManager.OnGameOverEvent -= ShowGameOverScreen;
     }

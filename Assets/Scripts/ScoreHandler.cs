@@ -7,7 +7,28 @@ public class ScoreHandler : MonoBehaviour
     [SerializeField] private float increaseInterval;
     [SerializeField] private int increaseAmount;
     private int _score, _highScore;
-    public event Action<int, int> OnScoreChangedEvent;
+    public event Action<int> OnScoreChangedEvent;
+    public event Action<int> OnHighScoreChangedEvent;
+
+    private int Score
+    {
+        get => _score;
+        set
+        {
+            _score = value;
+            OnScoreChangedEvent?.Invoke(_score);
+        }
+    }
+
+    private int HighScore
+    {
+        get => _highScore;
+        set
+        {
+            _highScore = value;
+            OnHighScoreChangedEvent?.Invoke(_highScore);
+        }
+    }
 
     private void Awake() => Load();
 
@@ -24,27 +45,22 @@ public class ScoreHandler : MonoBehaviour
 
     private void IncreaseScore(int amount)
     {
-        _score += amount;
-        SetHighScore();
-        OnScoreChangedEvent?.Invoke(_score, _highScore);
+        Score += amount;
+        TrySetHighScore();
     }
 
-    private void SetHighScore()
+    private void TrySetHighScore()
     {
-        if (_score <= _highScore) return;
-        _highScore = _score;
+        if (Score <= HighScore) return;
+        HighScore = Score;
         Save();
     }
 
-    private void Load()
-    {
-        _highScore = PlayerPrefs.GetInt("HighScore", 0);
-        OnScoreChangedEvent?.Invoke(_score, _highScore);
-    }
+    private void Load() => HighScore = PlayerPrefs.GetInt("HighScore", 0);
 
     private void Save()
     {
-        PlayerPrefs.SetInt("HighScore", _highScore);
+        PlayerPrefs.SetInt("HighScore", HighScore);
         PlayerPrefs.Save();
     }
 }

@@ -2,25 +2,26 @@ using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
 {
-    //Game is too simple, no need in property
-    public bool canMove = true;
     [SerializeField] private float lerpDuration;
+    private bool _canMove = true;
     private Vector2 _moveDirection;
     private Rigidbody2D _rigidbody2D;
     private bool _isGrounded;
     private bool _down = true;
 
+    public void SetCanMove(bool value) => _canMove = value;
+
     private void Awake() => _rigidbody2D = GetComponent<Rigidbody2D>();
 
     private void Start()
     {
-        canMove = true;
+        _canMove = true;
         _moveDirection = _down ? Vector2.down : Vector2.up;
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && canMove)
+        if (Input.GetMouseButtonDown(0) && _canMove)
         {
             ChangeDirection();
         }
