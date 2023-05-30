@@ -1,62 +1,51 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] private float lerpDuration;
-    private bool _canMove = true;
+    [SerializeField] private InputActionAsset actions;
+    [SerializeField] private float rayDistance;
     private Vector2 _moveDirection;
     private Rigidbody2D _rigidbody2D;
-    private bool _isGrounded;
     private bool _down = true;
+    private InputAction _clickAction;
 
-    public void SetCanMove(bool value) => _canMove = value;
-
-    private void Awake() => _rigidbody2D = GetComponent<Rigidbody2D>();
-
-    private void Start()
+    private void Awake()
     {
-        _canMove = true;
-        _moveDirection = _down ? Vector2.down : Vector2.up;
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _clickAction = actions.FindActionMap("Game").FindAction("Click");
     }
+
+    private void Start() => _moveDirection = _down ? Vector2.down : Vector2.up;
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && _canMove)
-        {
-            ChangeDirection();
-        }
-
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (_clickAction.WasPressedThisFrame())
         {
             ChangeDirection();
         }
     }
 
-    private void FixedUpdate() => Move(_moveDirection, lerpDuration);
+    private void FixedUpdate() => Move();
 
     private void ChangeDirection()
     {
-        if (!_isGrounded) return;
-        _moveDirection = _down ? Vector2.up : Vector2.down;
+        if(EventSystem.current.IsPointerOverGameObject()) return;
+        if (!IsGrounded()) return;
         _down = !_down;
+        _moveDirection = _down ? Vector2.down : Vector2.up;
     }
 
-    private void Move(Vector2 direction, float lerp) =>
-        _rigidbody2D.MovePosition(_rigidbody2D.position + direction / lerp);
-
-    private void OnCollisionEnter2D(Collision2D other)
+    private void Move()
     {
-        if (other.gameObject.CompareTag("Walkable"))
-        {
-            _isGrounded = true;
-        }
+        _rigidbody2D.MovePosition(_rigidbody2D.position + _moveDirection / lerpDuration);
     }
 
-    private void OnCollisionExit2D(Collision2D other)
+    private bool IsGrounded()
     {
-        if (other.gameObject.CompareTag("Walkable"))
-        {
-            _isGrounded = false;
-        }
+        return Physics2D.Raycast(transform.position, -Vector2.up, rayDistance) 
+               || Physics2D.Raycast(transform.position, Vector2.up, rayDistance);
     }
 }

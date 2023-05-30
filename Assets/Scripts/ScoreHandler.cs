@@ -56,7 +56,11 @@ public class ScoreHandler : MonoBehaviour
         Save();
     }
 
-    private void Load() => HighScore = PlayerPrefs.GetInt("HighScore", 0);
+    private void Load()
+    {
+        HighScore = PlayerPrefs.GetInt("HighScore", 0);
+        OnHighScoreChangedEvent?.Invoke(HighScore);
+    }
 
     private void Save()
     {

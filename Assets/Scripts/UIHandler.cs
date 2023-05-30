@@ -1,21 +1,26 @@
 using TMPro;
 using UnityEngine;
+using VContainer;
 
 public class UIHandler : MonoBehaviour
 {
     [SerializeField] private Canvas mainMenu, inGameMenu, pauseMenu, gameOverMenu;
     [SerializeField] private TextMeshProUGUI scoreText, highScoreText;
-    private ScoreHandler _scoreHandler;
     private GameManager _gameManager;
+    private ScoreHandler _scoreHandler;
+
+    [Inject]
+    private void Construct(GameManager gameManager, ScoreHandler scoreHandler)
+    {
+        _gameManager = gameManager;
+        _scoreHandler = scoreHandler;
+    }
 
     private void Awake()
     {
-        _gameManager = FindObjectOfType<GameManager>();
         _gameManager.OnStartGameEvent += OnStartGame;
         _gameManager.OnGameOverEvent += ShowGameOverScreen;
         _gameManager.SetTimeScale(0);
-        
-        _scoreHandler = FindObjectOfType<ScoreHandler>();
         _scoreHandler.OnScoreChangedEvent += UpdateScore;
         _scoreHandler.OnHighScoreChangedEvent += UpdateHighScore;
     }
@@ -30,6 +35,10 @@ public class UIHandler : MonoBehaviour
         gameOverMenu.gameObject.SetActive(false);
         _gameManager.SetTimeScale(1);
     }
+
+    public void StartGame() => _gameManager.StartGame();
+
+    public void RestartGame() => _gameManager.RestartGame();
 
     public void ShowPauseMenu()
     {
@@ -67,9 +76,9 @@ public class UIHandler : MonoBehaviour
 
     private void OnDestroy()
     {
-        _scoreHandler.OnScoreChangedEvent -= UpdateScore;
-        _scoreHandler.OnHighScoreChangedEvent -= UpdateHighScore;
         _gameManager.OnStartGameEvent -= OnStartGame;
         _gameManager.OnGameOverEvent -= ShowGameOverScreen;
+        _scoreHandler.OnScoreChangedEvent -= UpdateScore;
+        _scoreHandler.OnHighScoreChangedEvent -= UpdateHighScore;
     }
 }
