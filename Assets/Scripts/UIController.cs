@@ -1,11 +1,10 @@
-using TMPro;
 using UnityEngine;
 using VContainer;
 
-public class UIHandler : MonoBehaviour
+public class UIController : MonoBehaviour
 {
-    [SerializeField] private Canvas mainMenu, inGameMenu, pauseMenu, gameOverMenu;
-    [SerializeField] private TextMeshProUGUI scoreText, highScoreText;
+    [SerializeField] private UIModel uiModel;
+    private UIView _uiView;
     private GameManager _gameManager;
     private ScoreHandler _scoreHandler;
 
@@ -16,8 +15,13 @@ public class UIHandler : MonoBehaviour
         _scoreHandler = scoreHandler;
     }
 
+    public void StartGame() => _gameManager.StartGame();
+
+    public void RestartGame() => _gameManager.RestartGame();
+
     private void Awake()
     {
+        _uiView = new(uiModel.mainMenu, uiModel.inGameMenu, uiModel.pauseMenu, uiModel.gameOverMenu, uiModel.scoreText, uiModel.highScoreText);
         _gameManager.OnStartGameEvent += OnStartGame;
         _gameManager.OnGameOverEvent += ShowGameOverScreen;
         _gameManager.SetTimeScale(0);
@@ -26,51 +30,44 @@ public class UIHandler : MonoBehaviour
     }
 
     private void Start() => ShowMainMenu();
-
+    
     private void OnStartGame()
     {
-        mainMenu.gameObject.SetActive(false);
-        inGameMenu.gameObject.SetActive(true);
-        pauseMenu.gameObject.SetActive(false);
-        gameOverMenu.gameObject.SetActive(false);
+        _uiView.StartGame();
         _gameManager.SetTimeScale(1);
     }
 
-    public void StartGame() => _gameManager.StartGame();
-
-    public void RestartGame() => _gameManager.RestartGame();
-
     public void ShowPauseMenu()
     {
+        _uiView.ShowPauseMenu();
         _gameManager.SetTimeScale(0);
-        pauseMenu.gameObject.SetActive(true);
     }
 
     public void HidePauseMenu()
     {
-        pauseMenu.gameObject.SetActive(false);
+        _uiView.HidePauseMenu();
         _gameManager.SetTimeScale(1);
     }
 
     private void ShowGameOverScreen()
     {
-        mainMenu.gameObject.SetActive(false);
-        inGameMenu.gameObject.SetActive(false);
-        pauseMenu.gameObject.SetActive(false);
-        gameOverMenu.gameObject.SetActive(true);
+        _uiView.ShowGameOverMenu();
         _gameManager.SetTimeScale(0);
     }
 
-    private void UpdateScore(int score) => scoreText.SetText(score.ToString());
+    private void UpdateScore(int score)
+    {
+        _uiView.UpdateScore(score);
+    }
 
-    private void UpdateHighScore(int highScore) => highScoreText.SetText($"HighScore: {highScore}");
+    private void UpdateHighScore(int highScore)
+    {
+        _uiView.UpdateHighScore(highScore);
+    }
 
     private void ShowMainMenu()
     {
-        mainMenu.gameObject.SetActive(true);
-        inGameMenu.gameObject.SetActive(false);
-        pauseMenu.gameObject.SetActive(false);
-        gameOverMenu.gameObject.SetActive(false);
+        _uiView.ShowMainMenu();
         _gameManager.SetTimeScale(0);
     }
 

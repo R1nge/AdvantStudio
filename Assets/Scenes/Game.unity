@@ -455,12 +455,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1258076a8b264b825b11e569fe985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenu: {fileID: 492088824}
-  inGameMenu: {fileID: 527161389}
-  pauseMenu: {fileID: 320816890}
-  gameOverMenu: {fileID: 798452799}
-  scoreText: {fileID: 1061173334}
-  highScoreText: {fileID: 2002127288}
+  uiModel:
+    mainMenu: {fileID: 492088824}
+    inGameMenu: {fileID: 527161389}
+    pauseMenu: {fileID: 320816890}
+    gameOverMenu: {fileID: 798452799}
+    scoreText: {fileID: 1061173334}
+    highScoreText: {fileID: 2002127288}
 --- !u!1 &320816887
 GameObject:
   m_ObjectHideFlags: 0
